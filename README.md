@@ -16,7 +16,7 @@ uploader with the downloader, the file transfer begins.
 
 ## Example workflow
 ### Step 1: External agreement
-Communication over a secret channel:
+Communication over a secure channel:
 ```
 Alice: hey
 Bob: yo!
@@ -28,14 +28,14 @@ Bob: send it already
 ```
 
 ### Step 2: Uploader (Alice)
-```sh
+```
 $ openssl aes-256-cbc -a -salt -in hp4.mkv -out hp4.enc -k dumbledore_is_gay
 $ cntup hp4.enc harry
 Waiting for the downloader...
 ```
 
 ### Step 3: Downloader (Bob)
-```sh
+```
 $ cntdown hp4.enc harry
 $ openssl aes-256-cbc -d -a -in hp.enc -out hp4.mkv -k dumbledore_is_gay
 ```
