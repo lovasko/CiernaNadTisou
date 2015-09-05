@@ -54,11 +54,14 @@ message trans_request_reply {
 	byte code
 		0 = normal chunk
 		1 = last chunk
+		2 = error
 	byte checksum[4] big endian
 	byte data_length[8] big endian
 	byte *data
 }
 ```
+In case of an `code == 2 (error)`, the `data` space is used to transfer
+string description of the error, and `data_length` is the length of the string.
 
 ### Offer (server -> downloader)
 ```C
@@ -66,6 +69,7 @@ message trans_offer {
 	byte code
 		0 = normal chunk
 		1 = last chunk
+		2 = error
 	byte data_length[8] big endian
 	byte *data
 }
@@ -80,3 +84,4 @@ message trans_offer_reply {
 		1 = error
 }
 ```
+
